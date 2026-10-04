@@ -10,7 +10,9 @@ function updateCountdown() {
     seconds: Math.floor((remaining % 60000) / 1000)
   };
   Object.entries(values).forEach(([key, value]) => { parts[key].textContent = String(value).padStart(2, '0'); });
-  document.querySelector('.count-note').textContent = remaining === 0 ? 'Today is the day! · December 1, 2026' : 'Until we say “I do” · December 1, 2026';
+  document.querySelector('.count-note').textContent = remaining === 0
+    ? 'Today is the day! · December 1, 2026 · 3:00 PM Philippine Time'
+    : 'Until we say “I do” · December 1, 2026 at 3:00 PM Philippine Time';
 }
 
 updateCountdown();
