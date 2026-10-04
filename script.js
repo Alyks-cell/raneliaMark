@@ -23,7 +23,19 @@ const message = document.querySelector('#rsvp-message');
 const submitButton = form.querySelector('button[type="submit"]');
 const config = window.WEDDING_SUPABASE_CONFIG;
 const isConfigured = config?.url?.startsWith('https://') && !config.url.includes('YOUR-PROJECT') && config?.anonKey && !config.anonKey.includes('YOUR_SUPABASE');
-const supabase = isConfigured && window.supabase ? window.supabase.createClient(config.url, config.anonKey) : null;
+let supabase;
+
+function loadSupabaseClient() {
+  if (window.supabase) return Promise.resolve(window.supabase.createClient(config.url, config.anonKey));
+
+  return new Promise((resolve, reject) => {
+    const sdk = document.createElement('script');
+    sdk.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
+    sdk.onload = () => resolve(window.supabase.createClient(config.url, config.anonKey));
+    sdk.onerror = () => reject(new Error('Supabase could not be loaded.'));
+    document.head.append(sdk);
+  });
+}
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
@@ -40,7 +52,7 @@ form.addEventListener('submit', async (event) => {
     form.querySelector('input[name="response"]').focus({ preventScroll: true });
     return;
   }
-  if (!supabase) {
+  if (!isConfigured) {
     showMessage('The RSVP form is not connected yet. Please add your Supabase project URL and anon/publishable key in supabase-config.js.', true);
     return;
   }
@@ -48,6 +60,7 @@ form.addEventListener('submit', async (event) => {
   submitButton.disabled = true;
   submitButton.textContent = 'SENDING…';
   try {
+    supabase ??= await loadSupabaseClient();
     const { error } = await supabase.from('wedding_rsvps').insert({ guest_name: name, response });
     if (error) throw error;
     showMessage(response === 'yes'
