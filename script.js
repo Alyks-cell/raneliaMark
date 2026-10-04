@@ -23,20 +23,6 @@ const message = document.querySelector('#rsvp-message');
 const submitButton = form.querySelector('button[type="submit"]');
 const config = window.WEDDING_SUPABASE_CONFIG;
 const isConfigured = config?.url?.startsWith('https://') && !config.url.includes('YOUR-PROJECT') && config?.anonKey && !config.anonKey.includes('YOUR_SUPABASE');
-let supabase;
-
-function loadSupabaseClient() {
-  if (window.supabase) return Promise.resolve(window.supabase.createClient(config.url, config.anonKey));
-
-  return new Promise((resolve, reject) => {
-    const sdk = document.createElement('script');
-    sdk.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2';
-    sdk.onload = () => resolve(window.supabase.createClient(config.url, config.anonKey));
-    sdk.onerror = () => reject(new Error('Supabase could not be loaded.'));
-    document.head.append(sdk);
-  });
-}
-
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
   const name = form.elements.name.value.trim();
@@ -60,9 +46,19 @@ form.addEventListener('submit', async (event) => {
   submitButton.disabled = true;
   submitButton.textContent = 'SENDING…';
   try {
-    supabase ??= await loadSupabaseClient();
-    const { error } = await supabase.from('wedding_rsvps').insert({ guest_name: name, response });
-    if (error) throw error;
+    const result = await fetch(`${config.url}/rest/v1/wedding_rsvps`, {
+      method: 'POST',
+      headers: {
+        apikey: config.anonKey,
+        'Content-Type': 'application/json',
+        Prefer: 'return=minimal'
+      },
+      body: JSON.stringify({ guest_name: name, response })
+    });
+    if (!result.ok) {
+      const error = await result.json().catch(() => ({}));
+      throw new Error(error.message || `RSVP request failed (${result.status}).`);
+    }
     showMessage(response === 'yes'
       ? `Thank you, ${name}! We can’t wait to celebrate with you. Your RSVP has been received.`
       : `Thank you for letting us know, ${name}. You’ll be with us in spirit. Your RSVP has been received.`);
