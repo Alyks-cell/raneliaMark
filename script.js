@@ -46,7 +46,8 @@ form.addEventListener('submit', async (event) => {
   submitButton.disabled = true;
   submitButton.textContent = 'SENDING…';
   try {
-    const result = await fetch(`${config.url}/rest/v1/wedding_rsvps`, {
+    const table = response === 'yes' ? 'wedding_rsvps_yes' : 'wedding_rsvps_no';
+    const result = await fetch(`${config.url}/rest/v1/${table}`, {
       method: 'POST',
       headers: {
         apikey: config.anonKey,
