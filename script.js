@@ -1,3 +1,43 @@
+const intro = document.querySelector('#invite-intro');
+const introOpen = document.querySelector('#intro-open');
+if (intro && introOpen) {
+  intro.classList.add('is-visible');
+  intro.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('intro-active');
+  document.querySelectorAll('body > header, body > main, body > footer').forEach((element) => { element.inert = true; });
+  introOpen.focus({ preventScroll: true });
+
+  intro.addEventListener('keydown', (event) => {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      introOpen.focus();
+    }
+  });
+
+  const closeIntro = () => {
+    intro.classList.add('is-complete');
+    window.setTimeout(() => {
+      intro.remove();
+      document.body.classList.remove('intro-active');
+      document.querySelectorAll('body > header, body > main, body > footer').forEach((element) => { element.inert = false; });
+      const heroTitle = document.querySelector('#couple-names');
+      heroTitle?.setAttribute('tabindex', '-1');
+      heroTitle?.focus({ preventScroll: true });
+    }, 700);
+  };
+
+  introOpen.addEventListener('click', () => {
+    if (intro.classList.contains('is-opening')) return;
+    intro.classList.add('is-opening');
+    introOpen.disabled = true;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      window.setTimeout(closeIntro, 1500);
+      return;
+    }
+    window.setTimeout(closeIntro, 5800);
+  });
+}
+
 const weddingDate = new Date('2026-12-01T15:00:00+08:00');
 const parts = { days: document.querySelector('#days'), hours: document.querySelector('#hours'), minutes: document.querySelector('#minutes'), seconds: document.querySelector('#seconds') };
 
