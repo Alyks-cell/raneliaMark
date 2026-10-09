@@ -1,4 +1,4 @@
-const intro = document.querySelector('#invite-intro');
+﻿const intro = document.querySelector('#invite-intro');
 const introOpen = document.querySelector('#intro-open');
 if (intro && introOpen) {
   intro.classList.add('is-visible');
@@ -51,8 +51,8 @@ function updateCountdown() {
   };
   Object.entries(values).forEach(([key, value]) => { parts[key].textContent = String(value).padStart(2, '0'); });
   document.querySelector('.count-note').textContent = remaining === 0
-    ? 'Today is the day! · December 1, 2026 · 3:00 PM Philippine Time'
-    : 'Until we say “I do” · December 1, 2026 at 3:00 PM Philippine Time';
+    ? 'Today is the day! - December 1, 2026 - 3:00 PM Philippine Time'
+    : 'Until we say I do - December 1, 2026 at 3:00 PM Philippine Time';
 }
 
 updateCountdown();
@@ -84,7 +84,7 @@ form.addEventListener('submit', async (event) => {
   }
 
   submitButton.disabled = true;
-  submitButton.textContent = 'SENDING…';
+  submitButton.textContent = 'SENDING...';
   try {
     const table = response === 'yes' ? 'wedding_rsvps_yes' : 'wedding_rsvps_no';
     const result = await fetch(`${config.url}/rest/v1/${table}`, {
@@ -101,15 +101,19 @@ form.addEventListener('submit', async (event) => {
       throw new Error(error.message || `RSVP request failed (${result.status}).`);
     }
     showMessage(response === 'yes'
-      ? `Thank you, ${name}! We can’t wait to celebrate with you. Your RSVP has been received.`
-      : `Thank you for letting us know, ${name}. You’ll be with us in spirit. Your RSVP has been received.`);
+      ? `Thank you, ${name}! We can't wait to celebrate with you. Your RSVP has been received.`
+      : `Thank you for letting us know, ${name}. We will be with you in spirit. Your RSVP has been received.`);
     form.hidden = true;
+    if (response === 'yes') {
+      document.querySelector('#accepted-guest-name').textContent = name;
+      openSaveDatePopup();
+    }
   } catch (error) {
     console.error('RSVP submission failed:', error);
-    showMessage('We couldn’t submit your RSVP right now. Please try again in a moment.', true);
+    showMessage("We could not submit your RSVP right now. Please try again in a moment.", true);
   } finally {
     submitButton.disabled = false;
-    submitButton.innerHTML = 'SEND MY RSVP <span aria-hidden="true">↗</span>';
+    submitButton.innerHTML = 'SEND MY RSVP';
   }
 });
 
@@ -150,3 +154,25 @@ if (coupleStack) {
   });
   coupleStack.addEventListener('pointercancel', () => { swipeStart = null; });
 }
+
+const saveDatePopup = document.querySelector('#save-date-popup');
+const saveDateClose = saveDatePopup?.querySelector('.save-date-close');
+function openSaveDatePopup() {
+  if (!saveDatePopup) return;
+  saveDatePopup.hidden = false;
+  saveDatePopup.setAttribute('aria-hidden', 'false');
+  saveDateClose.focus();
+}
+function closeSaveDatePopup() {
+  if (!saveDatePopup) return;
+  saveDatePopup.hidden = true;
+  saveDatePopup.setAttribute('aria-hidden', 'true');
+  document.querySelector('#rsvp h2')?.focus();
+}
+saveDateClose?.addEventListener('click', closeSaveDatePopup);
+saveDatePopup?.addEventListener('click', (event) => {
+  if (event.target === saveDatePopup) closeSaveDatePopup();
+});
+saveDatePopup?.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeSaveDatePopup();
+});

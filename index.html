@@ -89,7 +89,7 @@
       </section>
 
     <section class="rsvp section-pad" id="rsvp">
-      <div class="rsvp-card"><p class="eyebrow">YOUR PRESENCE IS OUR PRESENT</p><h2>Will you join us?</h2><p class="rsvp-intro">Please reply by <strong>November 10, 2026</strong> so we can reserve your seat.</p>
+      <div class="rsvp-card"><p class="eyebrow">YOUR PRESENCE IS OUR PRESENT</p><h2 tabindex="-1">Will you join us?</h2><p class="rsvp-intro">Please reply by <strong>November 10, 2026</strong> so we can reserve your seat.</p>
         <div class="kindly-note"><p>We&rsquo;re keeping our celebration intimate, with seats reserved for the guests named on each invitation. Kindly, no plus ones.</p></div>
         <form id="rsvp-form" novalidate>
           <label for="guest-name">Your name as it appears on your invitation</label>
@@ -103,5 +103,15 @@
     </section>
   </main>
   <footer><a class="monogram" href="#home">R <span>&amp;</span> M</a><p>DECEMBER 1, 2026 &middot; MIAGAO, ILOILO</p><p class="footer-love">Made with love </p></footer>
+  <section class="save-date-popup" id="save-date-popup" role="dialog" aria-modal="true" aria-labelledby="save-date-title" aria-hidden="true" hidden>
+    <div class="save-date-card">
+      <button class="save-date-close" type="button" aria-label="Close save the date">×</button>
+      <p class="eyebrow">TOGETHER WITH THEIR FAMILIES</p>
+      <h2 id="save-date-title">Ranelia <i>&amp;</i><br>Mark Jan</h2>
+      <p class="save-date-time">DECEMBER 1 <span>·</span> 2026<br><strong>3:00 PM</strong></p>
+      <p class="save-date-caption">SAVE THE DATE</p>
+      <p class="save-date-message">Thank you, <strong id="accepted-guest-name"></strong>! We&rsquo;re looking forward to seeing you at the wedding ceremony!</p>
+    </div>
+  </section>
 </body>
 </html>
