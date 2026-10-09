@@ -120,3 +120,33 @@ function showMessage(text, isError = false) {
 }
 
 form.elements.name.addEventListener('input', (event) => event.currentTarget.removeAttribute('aria-invalid'));
+
+const coupleStack = document.querySelector('.couple-stack');
+if (coupleStack) {
+  const couplePhotos = [...coupleStack.querySelectorAll('.couple-photo')];
+  const coupleCount = document.querySelector('.couple-count');
+  let currentPhoto = 0;
+  const showCouplePhoto = (next) => {
+    currentPhoto = (next + couplePhotos.length) % couplePhotos.length;
+    couplePhotos.forEach((photo, index) => {
+      photo.classList.toggle('is-current', index === currentPhoto);
+      photo.style.zIndex = String(couplePhotos.length - ((index - currentPhoto + couplePhotos.length) % couplePhotos.length));
+    });
+    coupleCount.textContent = `${currentPhoto + 1} / ${couplePhotos.length}`;
+  };
+  document.querySelector('.couple-prev').addEventListener('click', () => showCouplePhoto(currentPhoto - 1));
+  document.querySelector('.couple-next').addEventListener('click', () => showCouplePhoto(currentPhoto + 1));
+  coupleStack.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowLeft') showCouplePhoto(currentPhoto - 1);
+    if (event.key === 'ArrowRight') showCouplePhoto(currentPhoto + 1);
+  });
+  let swipeStart = null;
+  coupleStack.addEventListener('pointerdown', (event) => { swipeStart = event.clientX; });
+  coupleStack.addEventListener('pointerup', (event) => {
+    if (swipeStart === null) return;
+    const distance = event.clientX - swipeStart;
+    if (Math.abs(distance) > 40) showCouplePhoto(currentPhoto + (distance < 0 ? 1 : -1));
+    swipeStart = null;
+  });
+  coupleStack.addEventListener('pointercancel', () => { swipeStart = null; });
+}
