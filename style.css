@@ -160,3 +160,6 @@ img.intro-envelope__seal{display:block;width:76px;height:76px;padding:0;border:0
 .page-guide a[aria-current="location"] span,.page-guide a:hover span,.page-guide a:focus-visible span{opacity:1;transform:translateX(0)}
 .page-guide a:focus-visible{outline:2px solid var(--champagne);outline-offset:4px}
 @media(max-width:650px){.page-guide{right:7px;gap:8px}.page-guide a{position:relative;width:24px;height:24px;justify-content:center}.page-guide a::before{width:7px;height:7px;flex-basis:7px}.page-guide a span{display:none}.page-guide a[aria-current="location"] span{display:block;position:absolute;right:27px;white-space:nowrap}}
+
+.reception-copy{flex:0 0 100%;width:100%}.reception-copy p{display:block;width:100%;margin:0!important}.reception-copy .reception-venue{white-space:nowrap;font-weight:600}@media(max-width:600px){.reception-copy .reception-venue{font-size:13px}}
+.rsvp-open{width:100%;height:48px;border:0;background:#867466;color:white;font:600 10px var(--sans);letter-spacing:.17em;cursor:pointer;transition:background .2s}.rsvp-open:hover{background:#6e5e50}.rsvp-open:focus-visible{outline:2px solid var(--champagne);outline-offset:3px}

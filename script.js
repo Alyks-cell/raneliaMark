@@ -112,6 +112,14 @@ setInterval(updateCountdown, 1000);
 
 const form = document.querySelector('#rsvp-form');
 const message = document.querySelector('#rsvp-message');
+const rsvpOpenButton = document.querySelector('#rsvp-open');
+const rsvpFormPanel = document.querySelector('#rsvp-form-panel');
+rsvpOpenButton.addEventListener('click', () => {
+  rsvpFormPanel.hidden = false;
+  rsvpOpenButton.hidden = true;
+  rsvpOpenButton.setAttribute('aria-expanded', 'true');
+  form.elements.name.focus();
+});
 const submitButton = form.querySelector('button[type="submit"]');
 const config = window.WEDDING_SUPABASE_CONFIG;
 const isConfigured = config?.url?.startsWith('https://') && !config.url.includes('YOUR-PROJECT') && config?.anonKey && !config.anonKey.includes('YOUR_SUPABASE');

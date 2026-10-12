@@ -136,7 +136,7 @@
       <p class="eyebrow">THE CELEBRATION</p><h2>Join us for the day</h2>
       <div class="event-grid">
         <article class="event-card ceremony-card"><div class="ceremony-info"><p class="eyebrow">THE CEREMONY</p><h3>Wedding Ceremony</h3><p class="event-time">3:00 PM</p><p>New Heights Fundamental Baptist Church<br>San Rafael, Miagao, Iloilo</p><a class="text-link" href="https://maps.app.goo.gl/nWmd7s1R3SxmDjid9" target="_blank" rel="noreferrer">FIND THE CHURCH</a></div><img class="ceremony-venue" src="images/wedding-venue-day.jfif" alt="New Heights Fundamental Baptist Church in daylight" loading="lazy"></article>
-        <article class="event-card reception-card"><p class="eyebrow">AFTER THE &ldquo;I DO&rdquo;</p><h3>Reception to follow</h3><p class="event-time">5:00 PM</p><p>Join us for dinner, toasts, and a joyful evening together.</p><span class="text-link muted">RECEPTION LOCATION TO BE ANNOUNCED</span></article>
+        <article class="event-card reception-card"><p class="eyebrow">AFTER THE &ldquo;I DO&rdquo;</p><h3>Wedding Reception</h3><p class="event-time">5:00 PM</p><div class="reception-copy"><p class="reception-venue">Justice Ramon B. Britanico Hall (Cultural Hall)</p><p class="reception-description">Join us for dinner, toasts, and a joyful evening together.</p></div></article>
       </div>
       <div class="dress-note">
         <div class="dress-copy"><p class="eyebrow">DRESS CODE</p><p>Floor-length dresses &middot; Semi-formal attire</p><p class="dress-color-hint">Suggested attire colors</p></div>
@@ -153,6 +153,8 @@
     <section class="rsvp section-pad" id="rsvp">
       <div class="section-vines" aria-hidden="true"><span></span><span></span></div>
       <div class="rsvp-card"><p class="eyebrow">YOUR PRESENCE IS OUR PRESENT</p><h2 tabindex="-1">Will you join us?</h2><p class="rsvp-intro">Please reply by <strong>November 10, 2026</strong> so we can reserve your seat.</p>
+        <button class="rsvp-open" id="rsvp-open" type="button" aria-expanded="false" aria-controls="rsvp-form-panel">OPEN RSVP</button>
+        <div id="rsvp-form-panel" hidden>
         <div class="kindly-note"><p>We&rsquo;re keeping our celebration intimate, with seats reserved for the guests named on each invitation. Kindly, no plus ones.</p></div>
         <form id="rsvp-form" novalidate>
           <label for="guest-name">Your name as it appears on your invitation</label>
@@ -162,6 +164,7 @@
           <p class="privacy-note">Your reply will be sent securely to the couple.</p>
         </form>
         <div id="rsvp-message" class="rsvp-message" role="status" aria-live="polite" hidden></div>
+        </div>
       </div>
     </section>
   </main>
