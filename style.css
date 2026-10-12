@@ -96,3 +96,67 @@ img.intro-envelope__seal{display:block;width:76px;height:76px;padding:0;border:0
 .save-date-message{max-width:340px;margin:22px 0 0;color:#817166;font:italic 17px/1.7 var(--serif)}@media(max-width:520px){.save-date-message{font-size:15px}}
 
 .save-date-message strong{color:#66594f;font-weight:600}
+
+/* Soft botanical line art adds a floral detail to the invitation. */
+.hero-bouquet{position:absolute;z-index:0;width:clamp(105px,16vw,190px);height:auto;color:rgba(173,132,119,.55);pointer-events:none}
+.hero-bouquet--left{left:clamp(12px,8vw,120px);top:50%;transform:translateY(-50%) rotate(-12deg)}
+.hero-bouquet--right{right:clamp(12px,8vw,120px);top:50%;transform:translateY(-50%) scaleX(-1) rotate(-12deg);color:rgba(174,148,107,.52)}
+.flower-divider{display:flex;align-items:center;justify-content:center;gap:13px;margin:0 auto 22px;color:var(--pink)}
+.flower-divider span{width:44px;height:1px;background:var(--beige)}
+.flower-divider svg{width:26px;height:26px;overflow:visible}
+@media(max-width:650px){.hero-bouquet{width:clamp(88px,22vw,130px);top:auto;bottom:8%;transform:rotate(-12deg)}.hero-bouquet--left{left:-8px}.hero-bouquet--right{right:-8px;transform:scaleX(-1) rotate(-12deg)}}
+
+/* A light, continuous flower fall across the page. */
+.falling-flowers{position:fixed;inset:0;z-index:8;overflow:hidden;pointer-events:none}
+.falling-flowers span{position:absolute;top:-36px;left:var(--flower-left);color:var(--flower-color);font:var(--flower-size)/1 var(--serif);opacity:0;animation:flower-fall var(--flower-duration) linear var(--flower-delay) infinite}
+.falling-flowers span:nth-child(1){--flower-left:5%;--flower-color:rgba(201,155,145,.58);--flower-size:19px;--flower-duration:19s;--flower-delay:-12s}
+.falling-flowers span:nth-child(2){--flower-left:16%;--flower-color:rgba(198,167,123,.56);--flower-size:15px;--flower-duration:23s;--flower-delay:-4s}
+.falling-flowers span:nth-child(3){--flower-left:27%;--flower-color:rgba(201,155,145,.48);--flower-size:21px;--flower-duration:21s;--flower-delay:-17s}
+.falling-flowers span:nth-child(4){--flower-left:39%;--flower-color:rgba(198,167,123,.5);--flower-size:14px;--flower-duration:25s;--flower-delay:-8s}
+.falling-flowers span:nth-child(5){--flower-left:50%;--flower-color:rgba(201,155,145,.52);--flower-size:18px;--flower-duration:20s;--flower-delay:-2s}
+.falling-flowers span:nth-child(6){--flower-left:62%;--flower-color:rgba(198,167,123,.5);--flower-size:16px;--flower-duration:24s;--flower-delay:-15s}
+.falling-flowers span:nth-child(7){--flower-left:73%;--flower-color:rgba(201,155,145,.55);--flower-size:20px;--flower-duration:22s;--flower-delay:-6s}
+.falling-flowers span:nth-child(8){--flower-left:83%;--flower-color:rgba(198,167,123,.48);--flower-size:15px;--flower-duration:26s;--flower-delay:-20s}
+.falling-flowers span:nth-child(9){--flower-left:93%;--flower-color:rgba(201,155,145,.5);--flower-size:18px;--flower-duration:21s;--flower-delay:-10s}
+.falling-flowers span:nth-child(10){--flower-left:33%;--flower-color:rgba(198,167,123,.46);--flower-size:13px;--flower-duration:27s;--flower-delay:-23s}
+@keyframes flower-fall{0%{opacity:0;transform:translate3d(0,-5vh,0) rotate(0deg)}8%{opacity:.75}48%{transform:translate3d(34px,52vh,0) rotate(175deg)}88%{opacity:.65}100%{opacity:0;transform:translate3d(-18px,108vh,0) rotate(350deg)}}
+@media(prefers-reduced-motion:reduce){.falling-flowers{display:none}}
+
+.song-widget{position:fixed;right:max(20px,env(safe-area-inset-right));bottom:max(20px,env(safe-area-inset-bottom));z-index:25;display:flex;flex-direction:column;align-items:flex-end;gap:10px;pointer-events:none}
+.song-toggle,.song-panel{pointer-events:auto}
+.song-toggle{display:grid;place-items:center;width:50px;height:50px;padding:0;border:1px solid rgba(198,167,123,.75);border-radius:50%;background:rgba(251,248,242,.96);box-shadow:0 5px 20px rgba(90,70,55,.12);color:#746254;cursor:pointer}
+.song-toggle svg{display:block;width:20px;height:20px;overflow:visible}
+.song-toggle[aria-expanded="false"] svg path{fill:currentColor}
+.song-toggle[aria-expanded="true"] svg path{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round}
+.song-toggle:hover{background:#f5eee5}
+.song-toggle:focus-visible,.song-close:focus-visible{outline:2px solid var(--pink);outline-offset:3px}
+.song-panel{width:min(320px,calc(100vw - 40px));padding:12px;background:var(--ivory);border:1px solid var(--line);box-shadow:0 12px 36px rgba(60,45,35,.2)}
+.song-panel__heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:9px;color:#746254;font:italic 16px var(--serif)}
+.song-close{display:grid;place-items:center;width:30px;height:30px;border:1px solid var(--line);border-radius:50%;background:transparent;color:var(--taupe);font:20px/1 var(--serif);cursor:pointer}
+.song-panel iframe{display:block;width:100%;aspect-ratio:16/9;border:0;background:#eee7df}
+@media(max-width:480px){.song-widget{right:max(14px,env(safe-area-inset-right));bottom:max(14px,env(safe-area-inset-bottom))}.song-panel{width:min(300px,calc(100vw - 28px))}}
+
+.dress-note{display:block}
+.dress-copy>p:nth-child(2){margin:0;color:#73665b;font:italic 16px/1.6 var(--serif)}
+.dress-copy .dress-color-hint{margin:9px 0 0;color:#98877a;font-size:10px;letter-spacing:.08em}
+.dress-colors{display:flex;flex-wrap:wrap;gap:18px 24px;margin:16px 0 0;padding:0;list-style:none}
+.dress-colors li{min-width:88px;display:flex;flex-direction:column;align-items:center;gap:6px;color:#81766c;font-size:10px;letter-spacing:.04em}
+.dress-swatch{display:block;width:58px;height:58px;border:1px solid rgba(81,73,65,.12);border-radius:50%;box-shadow:0 2px 7px rgba(90,70,55,.08)}
+.dress-swatch.blush{background:#e6b2a7}.dress-swatch.beige{background:#d8cabe}.dress-swatch.ivory{background:#f0e7d7}.dress-swatch.champagne{background:#d6c09a}.dress-swatch.taupe{background:#bca894}
+@media(max-width:650px){.dress-colors{justify-content:center;gap:16px 9px}.dress-colors li{min-width:76px;font-size:9px}}
+
+.section-pad{position:relative}
+.section-vines{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.section-vines span{position:absolute;inset:0 auto 0 0;width:clamp(54px,10vw,122px);opacity:.3;background:url("images/floral-vine.svg") left top/100% 520px repeat-y}
+.section-vines span+span{right:0;left:auto;transform:scaleX(-1);transform-origin:center}
+.section-pad>*:not(.section-vines){position:relative;z-index:1}
+@media(max-width:650px){.section-vines span{width:clamp(42px,12vw,72px);opacity:.2}}
+
+.page-guide{position:fixed;z-index:21;top:50%;right:20px;display:flex;flex-direction:column;align-items:flex-end;gap:13px;transform:translateY(-50%)}
+.page-guide a{display:flex;align-items:center;gap:9px;min-height:18px;color:var(--taupe);text-decoration:none}
+.page-guide a::before{content:"";flex:0 0 8px;width:8px;height:8px;border:1px solid #bba894;border-radius:50%;background:var(--ivory);transition:transform .2s,background .2s,border-color .2s}
+.page-guide a span{padding:3px 8px;background:rgba(251,248,242,.94);font-size:9px;letter-spacing:.08em;opacity:0;transform:translateX(5px);transition:opacity .2s,transform .2s;pointer-events:none}
+.page-guide a[aria-current="location"]::before{transform:scale(1.35);border-color:var(--pink);background:var(--pink)}
+.page-guide a[aria-current="location"] span,.page-guide a:hover span,.page-guide a:focus-visible span{opacity:1;transform:translateX(0)}
+.page-guide a:focus-visible{outline:2px solid var(--champagne);outline-offset:4px}
+@media(max-width:650px){.page-guide{right:7px;gap:8px}.page-guide a{position:relative;width:24px;height:24px;justify-content:center}.page-guide a::before{width:7px;height:7px;flex-basis:7px}.page-guide a span{display:none}.page-guide a[aria-current="location"] span{display:block;position:absolute;right:27px;white-space:nowrap}}

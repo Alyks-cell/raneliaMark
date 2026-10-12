@@ -38,6 +38,58 @@ if (intro && introOpen) {
   });
 }
 
+const songToggle = document.querySelector('#song-toggle');
+const songPanel = document.querySelector('#song-player');
+const songEmbed = document.querySelector('#song-embed');
+const songClose = document.querySelector('#song-close');
+function setSongPlayerOpen(isOpen) {
+  if (!songToggle || !songPanel || !songEmbed) return;
+  songPanel.hidden = !isOpen;
+  songToggle.setAttribute('aria-expanded', String(isOpen));
+  songToggle.setAttribute('aria-label', isOpen ? 'Close wedding song player' : 'Open wedding song player');
+  songToggle.title = isOpen ? 'Close music player' : 'Play our song';
+  songToggle.innerHTML = isOpen
+    ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>'
+    : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>';
+  if (isOpen) {
+    songEmbed.src = 'https://www.youtube-nocookie.com/embed/8Fz1MYO-E0g?rel=0';
+  } else {
+    songEmbed.removeAttribute('src');
+    songToggle.focus();
+  }
+}
+songToggle?.addEventListener('click', () => setSongPlayerOpen(songPanel.hidden));
+songClose?.addEventListener('click', () => setSongPlayerOpen(false));
+
+const pageGuideLinks = [...document.querySelectorAll('.page-guide a')];
+const guideSections = pageGuideLinks.map((link) => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+let guideUpdatePending = false;
+function updatePageGuide() {
+  const marker = window.innerHeight * 0.42;
+  let current = guideSections[0];
+  guideSections.forEach((section) => {
+    if (section.getBoundingClientRect().top <= marker) current = section;
+  });
+  if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4) {
+    current = guideSections[guideSections.length - 1];
+  }
+  pageGuideLinks.forEach((link) => {
+    if (link.hash === `#${current?.id}`) link.setAttribute('aria-current', 'location');
+    else link.removeAttribute('aria-current');
+  });
+  guideUpdatePending = false;
+}
+function schedulePageGuideUpdate() {
+  if (guideUpdatePending) return;
+  guideUpdatePending = true;
+  window.requestAnimationFrame(updatePageGuide);
+}
+if (pageGuideLinks.length && guideSections.length) {
+  updatePageGuide();
+  window.addEventListener('scroll', schedulePageGuideUpdate, { passive: true });
+  window.addEventListener('resize', schedulePageGuideUpdate);
+}
+
 const weddingDate = new Date('2026-12-01T15:00:00+08:00');
 const parts = { days: document.querySelector('#days'), hours: document.querySelector('#hours'), minutes: document.querySelector('#minutes'), seconds: document.querySelector('#seconds') };
 

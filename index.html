@@ -15,6 +15,10 @@
   <script src="script.js" defer></script>
 </head>
 <body>
+  <div class="falling-flowers" aria-hidden="true">
+    <span>✿</span><span>❀</span><span>✾</span><span>✿</span><span>❀</span>
+    <span>✾</span><span>✿</span><span>❀</span><span>✾</span><span>✿</span>
+  </div>
   <section class="invite-intro" id="invite-intro" role="dialog" aria-modal="true" aria-labelledby="intro-title" aria-hidden="true">
     <div class="intro-content">
       <p class="eyebrow">A LITTLE SOMETHING FOR YOU</p>
@@ -32,7 +36,7 @@
         <img class="intro-envelope__seal" src="images/gold-wax-seal.svg" alt="" aria-hidden="true">
       </div>
       <div class="intro-reveal" aria-hidden="true">
-        <p>Ranelia <i>&amp;</i> Mark John</p>
+        <p>Ranelia <i>&amp;</i> Mark Jan</p>
         <span>DECEMBER 1 &middot; 2026</span>
       </div>
       <button class="intro-open" id="intro-open" type="button">OPEN INVITATION </button>
@@ -41,8 +45,53 @@
   </section>
   <header class="topbar"><a class="monogram" href="#home" aria-label="Ranelia and Mark Jan home">R <span>&amp;</span> M</a><a class="top-link" href="#rsvp">Kindly reply </a></header>
   <main>
+    <nav class="page-guide" aria-label="Invitation sections">
+      <a href="#home" aria-label="Home" aria-current="location"><span>Home</span></a>
+      <a href="#story" aria-label="Our story"><span>Our story</span></a>
+      <a href="#countdown" aria-label="Countdown"><span>Countdown</span></a>
+      <a href="#details" aria-label="Wedding details"><span>Details</span></a>
+      <a href="#rsvp" aria-label="RSVP"><span>RSVP</span></a>
+    </nav>
     <section class="hero" id="home" aria-labelledby="couple-names">
       <div class="hero-glow" aria-hidden="true"></div>
+      <svg class="hero-bouquet hero-bouquet--left" viewBox="0 0 180 260" aria-hidden="true" focusable="false">
+        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M24 250C63 194 79 135 144 24M50 208c-27-6-37-23-38-43 22 2 38 13 42 35m16-37c-1-25 12-42 32-51 7 21 0 39-22 54m12-44c-22-2-35-15-40-35 20-4 38 4 48 25m20-36c-1-20 9-34 26-43 7 18 2 33-16 47" stroke-width="2"/>
+          <path d="M113 80c-7-17-3-31 10-42 11 13 12 27 1 43m19-26c17-8 31-5 42 8-12 12-26 13-43 2m-11-10c0-17 9-28 25-33 5 16 0 29-15 39m-10-8c-15-7-21-20-18-36 16 2 27 11 31 28" stroke-width="1.5"/>
+        </g>
+        <g class="bouquet-leaves" fill="#9daa8d" stroke="#f9f5ed" stroke-width=".6">
+          <path d="M42 218C27 203 27 190 35 181c14 6 18 18 12 32m23-38c-4-18 3-29 15-34 10 12 8 24-4 35m19-40c-1-15 6-25 18-29 8 12 5 22-7 31m15-34c-2-15 4-24 15-29 8 11 6 21-5 30"/>
+        </g>
+        <g transform="translate(128 48)" fill="#e6b2a7" stroke="#fff8f1" stroke-width=".7">
+          <ellipse cy="-6" rx="5" ry="8"/><ellipse cy="-6" rx="5" ry="8" transform="rotate(60)"/><ellipse cy="-6" rx="5" ry="8" transform="rotate(120)"/><ellipse cy="-6" rx="5" ry="8" transform="rotate(180)"/><ellipse cy="-6" rx="5" ry="8" transform="rotate(240)"/><ellipse cy="-6" rx="5" ry="8" transform="rotate(300)"/>
+          <circle r="4.4" fill="#d99f94"/><path d="M-2 1c-2-3 1-6 4-4 2 2 0 4-2 4" fill="none" stroke="#f7ddd3" stroke-width=".8"/>
+        </g>
+        <g transform="translate(96 82)" fill="#f2e9d9" stroke="#fffaf2" stroke-width=".7">
+          <ellipse cy="-5" rx="4" ry="7"/><ellipse cy="-5" rx="4" ry="7" transform="rotate(72)"/><ellipse cy="-5" rx="4" ry="7" transform="rotate(144)"/><ellipse cy="-5" rx="4" ry="7" transform="rotate(216)"/><ellipse cy="-5" rx="4" ry="7" transform="rotate(288)"/><circle r="2.5" fill="#d4b982" stroke="none"/>
+        </g>
+        <g transform="translate(148 99)" fill="#e8c2b8" stroke="#fff8f1" stroke-width=".6">
+          <ellipse cy="-4" rx="3.4" ry="5.5"/><ellipse cy="-4" rx="3.4" ry="5.5" transform="rotate(72)"/><ellipse cy="-4" rx="3.4" ry="5.5" transform="rotate(144)"/><ellipse cy="-4" rx="3.4" ry="5.5" transform="rotate(216)"/><ellipse cy="-4" rx="3.4" ry="5.5" transform="rotate(288)"/><circle r="2" fill="#d5b77e" stroke="none"/>
+        </g>
+      </svg>
+      <svg class="hero-bouquet hero-bouquet--right" viewBox="0 0 180 260" aria-hidden="true" focusable="false">
+        <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M24 250C63 194 79 135 144 24M50 208c-27-6-37-23-38-43 22 2 38 13 42 35m16-37c-1-25 12-42 32-51 7 21 0 39-22 54m12-44c-22-2-35-15-40-35 20-4 38 4 48 25m20-36c-1-20 9-34 26-43 7 18 2 33-16 47" stroke-width="2"/>
+          <path d="M113 80c-7-17-3-31 10-42 11 13 12 27 1 43m19-26c17-8 31-5 42 8-12 12-26 13-43 2m-11-10c0-17 9-28 25-33 5 16 0 29-15 39m-10-8c-15-7-21-20-18-36 16 2 27 11 31 28" stroke-width="1.5"/>
+        </g>
+        <g class="bouquet-leaves" fill="#9daa8d" stroke="#f9f5ed" stroke-width=".6">
+          <path d="M42 218C27 203 27 190 35 181c14 6 18 18 12 32m23-38c-4-18 3-29 15-34 10 12 8 24-4 35m19-40c-1-15 6-25 18-29 8 12 5 22-7 31m15-34c-2-15 4-24 15-29 8 11 6 21-5 30"/>
+        </g>
+        <g transform="translate(128 48)" fill="#e6b2a7" stroke="#fff8f1" stroke-width=".7">
+          <ellipse cy="-6" rx="5" ry="8"/><ellipse cy="-6" rx="5" ry="8" transform="rotate(60)"/><ellipse cy="-6" rx="5" ry="8" transform="rotate(120)"/><ellipse cy="-6" rx="5" ry="8" transform="rotate(180)"/><ellipse cy="-6" rx="5" ry="8" transform="rotate(240)"/><ellipse cy="-6" rx="5" ry="8" transform="rotate(300)"/>
+          <circle r="4.4" fill="#d99f94"/><path d="M-2 1c-2-3 1-6 4-4 2 2 0 4-2 4" fill="none" stroke="#f7ddd3" stroke-width=".8"/>
+        </g>
+        <g transform="translate(96 82)" fill="#f2e9d9" stroke="#fffaf2" stroke-width=".7">
+          <ellipse cy="-5" rx="4" ry="7"/><ellipse cy="-5" rx="4" ry="7" transform="rotate(72)"/><ellipse cy="-5" rx="4" ry="7" transform="rotate(144)"/><ellipse cy="-5" rx="4" ry="7" transform="rotate(216)"/><ellipse cy="-5" rx="4" ry="7" transform="rotate(288)"/><circle r="2.5" fill="#d4b982" stroke="none"/>
+        </g>
+        <g transform="translate(148 99)" fill="#e8c2b8" stroke="#fff8f1" stroke-width=".6">
+          <ellipse cy="-4" rx="3.4" ry="5.5"/><ellipse cy="-4" rx="3.4" ry="5.5" transform="rotate(72)"/><ellipse cy="-4" rx="3.4" ry="5.5" transform="rotate(144)"/><ellipse cy="-4" rx="3.4" ry="5.5" transform="rotate(216)"/><ellipse cy="-4" rx="3.4" ry="5.5" transform="rotate(288)"/><circle r="2" fill="#d5b77e" stroke="none"/>
+        </g>
+      </svg>
       <p class="eyebrow">TOGETHER WITH THEIR FAMILIES</p>
       
       <h1 id="couple-names"><span>Ranelia</span><i>&amp;</i><span>Mark Jan</span></h1>
@@ -53,7 +102,9 @@
     </section>
 
     <section class="story section-pad" id="story">
+      <div class="section-vines" aria-hidden="true"><span></span><span></span></div>
 
+      <div class="flower-divider" aria-hidden="true"><span></span><svg viewBox="0 0 40 40"><g fill="none" stroke="currentColor" stroke-width="1.2"><ellipse cx="20" cy="11" rx="4" ry="7"/><ellipse cx="20" cy="29" rx="4" ry="7"/><ellipse cx="11" cy="20" rx="7" ry="4"/><ellipse cx="29" cy="20" rx="7" ry="4"/><ellipse cx="13.6" cy="13.6" rx="4" ry="7" transform="rotate(-45 13.6 13.6)"/><ellipse cx="26.4" cy="26.4" rx="4" ry="7" transform="rotate(-45 26.4 26.4)"/><ellipse cx="26.4" cy="13.6" rx="4" ry="7" transform="rotate(45 26.4 13.6)"/><ellipse cx="13.6" cy="26.4" rx="4" ry="7" transform="rotate(45 13.6 26.4)"/><circle cx="20" cy="20" r="2.5" fill="currentColor"/></g></svg><span></span></div>
       <h2>A day made sweeter<br><em>with you beside us.</em></h2>
       <div class="couple-carousel" aria-label="Photos of Ranelia and Mark">
         <div class="couple-stack" tabindex="0" aria-roledescription="carousel" aria-label="Swipe or use the arrow keys to browse three couple photos">
@@ -67,7 +118,8 @@
       <div class="signature">With love, <span>Ranelia &amp; Mark Jan</span></div>
     </section>
 
-    <section class="countdown section-pad" aria-label="Countdown to the wedding">
+    <section class="countdown section-pad" id="countdown" aria-label="Countdown to the wedding">
+      <div class="section-vines" aria-hidden="true"><span></span><span></span></div>
       <p class="eyebrow">COUNTING DOWN TO FOREVER</p>
       <h2>Our day is almost here</h2>
       <div class="count-grid" aria-live="off">
@@ -80,15 +132,26 @@
     </section>
 
     <section class="details section-pad" id="details">
+      <div class="section-vines" aria-hidden="true"><span></span><span></span></div>
       <p class="eyebrow">THE CELEBRATION</p><h2>Join us for the day</h2>
       <div class="event-grid">
         <article class="event-card ceremony-card"><div class="ceremony-info"><p class="eyebrow">THE CEREMONY</p><h3>Wedding Ceremony</h3><p class="event-time">3:00 PM</p><p>New Heights Fundamental Baptist Church<br>San Rafael, Miagao, Iloilo</p><a class="text-link" href="https://maps.app.goo.gl/nWmd7s1R3SxmDjid9" target="_blank" rel="noreferrer">FIND THE CHURCH</a></div><img class="ceremony-venue" src="images/wedding-venue-day.jfif" alt="New Heights Fundamental Baptist Church in daylight" loading="lazy"></article>
         <article class="event-card reception-card"><p class="eyebrow">AFTER THE &ldquo;I DO&rdquo;</p><h3>Reception to follow</h3><p class="event-time">5:00 PM</p><p>Join us for dinner, toasts, and a joyful evening together.</p><span class="text-link muted">RECEPTION LOCATION TO BE ANNOUNCED</span></article>
       </div>
-      <div class="dress-note"><div><p class="eyebrow">DRESS CODE</p><p>Floor-length dresses &middot; Semi-formal attire</p></div></div>
+      <div class="dress-note">
+        <div class="dress-copy"><p class="eyebrow">DRESS CODE</p><p>Floor-length dresses &middot; Semi-formal attire</p><p class="dress-color-hint">Suggested attire colors</p></div>
+        <ul class="dress-colors" aria-label="Suggested wedding attire colors">
+          <li><span class="dress-swatch blush" aria-hidden="true"></span><span>Blush Pink</span></li>
+          <li><span class="dress-swatch beige" aria-hidden="true"></span><span>Soft Beige</span></li>
+          <li><span class="dress-swatch ivory" aria-hidden="true"></span><span>Warm Ivory</span></li>
+          <li><span class="dress-swatch champagne" aria-hidden="true"></span><span>Champagne</span></li>
+          <li><span class="dress-swatch taupe" aria-hidden="true"></span><span>Taupe</span></li>
+        </ul>
+      </div>
       </section>
 
     <section class="rsvp section-pad" id="rsvp">
+      <div class="section-vines" aria-hidden="true"><span></span><span></span></div>
       <div class="rsvp-card"><p class="eyebrow">YOUR PRESENCE IS OUR PRESENT</p><h2 tabindex="-1">Will you join us?</h2><p class="rsvp-intro">Please reply by <strong>November 10, 2026</strong> so we can reserve your seat.</p>
         <div class="kindly-note"><p>We&rsquo;re keeping our celebration intimate, with seats reserved for the guests named on each invitation. Kindly, no plus ones.</p></div>
         <form id="rsvp-form" novalidate>
@@ -102,6 +165,13 @@
       </div>
     </section>
   </main>
+  <aside class="song-widget" aria-label="Wedding song">
+    <button class="song-toggle" id="song-toggle" type="button" aria-label="Open wedding song player" title="Play our song" aria-expanded="false" aria-controls="song-player"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button>
+    <div class="song-panel" id="song-player" hidden>
+      <div class="song-panel__heading"><span>A song for our day</span><button class="song-close" id="song-close" type="button" aria-label="Close music player">&times;</button></div>
+      <iframe id="song-embed" title="Wedding song on YouTube" allow="encrypted-media; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+  </aside>
   <footer><a class="monogram" href="#home">R <span>&amp;</span> M</a><p>DECEMBER 1, 2026 &middot; MIAGAO, ILOILO</p><p class="footer-love">Made with love </p></footer>
   <section class="save-date-popup" id="save-date-popup" role="dialog" aria-modal="true" aria-labelledby="save-date-title" aria-hidden="true" hidden>
     <div class="save-date-card">
