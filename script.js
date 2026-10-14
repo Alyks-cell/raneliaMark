@@ -39,27 +39,29 @@ if (intro && introOpen) {
 }
 
 const songToggle = document.querySelector('#song-toggle');
-const songPanel = document.querySelector('#song-player');
 const songAudio = document.querySelector('#song-audio');
-const songClose = document.querySelector('#song-close');
-function setSongPlayerOpen(isOpen) {
-  if (!songToggle || !songPanel || !songAudio) return;
-  songPanel.hidden = !isOpen;
-  songToggle.setAttribute('aria-expanded', String(isOpen));
-  songToggle.setAttribute('aria-label', isOpen ? 'Close wedding song player' : 'Open wedding song player');
-  songToggle.title = isOpen ? 'Close music player' : 'Play our song';
-  songToggle.innerHTML = isOpen
-    ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>'
+function setSongPlaying(isPlaying) {
+  if (!songToggle || !songAudio) return;
+  songToggle.setAttribute('aria-pressed', String(isPlaying));
+  songToggle.setAttribute('aria-label', isPlaying ? 'Pause wedding song' : 'Play wedding song');
+  songToggle.title = isPlaying ? 'Pause wedding song' : 'Play wedding song';
+  songToggle.innerHTML = isPlaying
+    ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5h4v14H7zM15 5h4v14h-4z"/></svg>'
     : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>';
-  if (isOpen) {
-    songAudio.play().catch(() => {});
+}
+songToggle?.addEventListener('click', () => {
+  if (!songAudio) return;
+  if (songAudio.paused) {
+    setSongPlaying(true);
+    songAudio.play().catch(() => setSongPlaying(false));
   } else {
     songAudio.pause();
-    songToggle.focus();
+    setSongPlaying(false);
   }
-}
-songToggle?.addEventListener('click', () => setSongPlayerOpen(songPanel.hidden));
-songClose?.addEventListener('click', () => setSongPlayerOpen(false));
+});
+songAudio?.addEventListener('ended', () => setSongPlaying(false));
+songAudio?.addEventListener('pause', () => setSongPlaying(false));
+songAudio?.addEventListener('play', () => setSongPlaying(true));
 
 const pageGuideLinks = [...document.querySelectorAll('.page-guide a')];
 const guideSections = pageGuideLinks.map((link) => document.querySelector(link.getAttribute('href'))).filter(Boolean);

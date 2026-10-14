@@ -213,15 +213,11 @@
     </section>
   </main>
   <aside class="song-widget" aria-label="Wedding song">
-    <button class="song-toggle" id="song-toggle" type="button" aria-label="Open wedding song player" title="Play our song" aria-expanded="false" aria-controls="song-player"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button>
-    <div class="song-panel" id="song-player" hidden>
-      <div class="song-panel__heading"><span>A song for our day</span><button class="song-close" id="song-close" type="button" aria-label="Close music player">&times;</button></div>
-      <p class="song-track-title">God Made This Day</p>
-      <audio id="song-audio" controls preload="none" loop aria-label="God Made This Day wedding song">
-        <source src="audio/wedding-song.mp3" type="audio/mpeg">
-        Your browser does not support audio playback.
-      </audio>
-    </div>
+    <button class="song-toggle" id="song-toggle" type="button" aria-label="Play wedding song" title="Play wedding song" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg></button>
+    <audio id="song-audio" preload="none" loop aria-label="God Made This Day wedding song">
+      <source src="audio/wedding-song.mp3" type="audio/mpeg">
+      Your browser does not support audio playback.
+    </audio>
   </aside>
   <footer><a class="monogram" href="#home">R <span>&amp;</span> M</a><p>DECEMBER 1, 2026 &middot; MIAGAO, ILOILO</p><p class="footer-love">Made with love </p></footer>
   <section class="save-date-popup" id="save-date-popup" role="dialog" aria-modal="true" aria-labelledby="save-date-title" aria-hidden="true" hidden>
