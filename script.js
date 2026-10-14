@@ -40,10 +40,10 @@ if (intro && introOpen) {
 
 const songToggle = document.querySelector('#song-toggle');
 const songPanel = document.querySelector('#song-player');
-const songEmbed = document.querySelector('#song-embed');
+const songAudio = document.querySelector('#song-audio');
 const songClose = document.querySelector('#song-close');
 function setSongPlayerOpen(isOpen) {
-  if (!songToggle || !songPanel || !songEmbed) return;
+  if (!songToggle || !songPanel || !songAudio) return;
   songPanel.hidden = !isOpen;
   songToggle.setAttribute('aria-expanded', String(isOpen));
   songToggle.setAttribute('aria-label', isOpen ? 'Close wedding song player' : 'Open wedding song player');
@@ -52,9 +52,9 @@ function setSongPlayerOpen(isOpen) {
     ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg>'
     : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z"/></svg>';
   if (isOpen) {
-    songEmbed.src = 'https://www.youtube-nocookie.com/embed/8Fz1MYO-E0g?rel=0';
+    songAudio.play().catch(() => {});
   } else {
-    songEmbed.removeAttribute('src');
+    songAudio.pause();
     songToggle.focus();
   }
 }
@@ -109,6 +109,48 @@ function updateCountdown() {
 
 updateCountdown();
 setInterval(updateCountdown, 1000);
+
+const calendarDays = document.querySelector('#calendar-days');
+if (calendarDays) {
+  const fragment = document.createDocumentFragment();
+  const firstWeekday = new Date(Date.UTC(2026, 11, 1)).getUTCDay();
+  for (let index = 0; index < firstWeekday; index += 1) {
+    const blank = document.createElement('li');
+    blank.setAttribute('aria-hidden', 'true');
+    fragment.append(blank);
+  }
+  for (let day = 1; day <= 31; day += 1) {
+    const cell = document.createElement('li');
+    cell.textContent = String(day);
+    if (day === 1) {
+      cell.className = 'is-event-day';
+      cell.setAttribute('aria-label', 'Wedding day, Tuesday, December 1, 2026');
+    }
+    fragment.append(cell);
+  }
+  calendarDays.append(fragment);
+
+  const start = new Date('2026-12-01T15:00:00+08:00');
+  const end = new Date('2026-12-01T21:00:00+08:00');
+  const stamp = (date) => date.toISOString().replace(/[-:]/gu, '').replace(/\.\d{3}/u, '');
+  const title = 'Ranelia & Mark Jan Wedding';
+  const location = 'New Heights Fundamental Baptist Church, San Rafael, Miagao, Iloilo';
+  const description = 'Wedding ceremony at 3:00 PM, followed by reception at 5:00 PM.';
+  const dates = `${stamp(start)}/${stamp(end)}`;
+  const googleParams = new URLSearchParams({ action: 'TEMPLATE', text: title, dates, location, details: description });
+  const googleCalendarLink = document.querySelector('#google-calendar-link');
+  if (googleCalendarLink) googleCalendarLink.href = `https://calendar.google.com/calendar/render?${googleParams}`;
+
+  const escapeIcs = (value) => value.replace(/\\/gu, '\\\\').replace(/\n/gu, '\\n').replace(/,/gu, '\\,').replace(/;/gu, '\\;');
+  const ics = [
+    'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Ranelia and Mark Jan//Wedding//EN',
+    'BEGIN:VEVENT', `DTSTART:${stamp(start)}`, `DTEND:${stamp(end)}`,
+    `SUMMARY:${escapeIcs(title)}`, `LOCATION:${escapeIcs(location)}`,
+    `DESCRIPTION:${escapeIcs(description)}`, 'END:VEVENT', 'END:VCALENDAR'
+  ].join('\r\n');
+  const icsCalendarLink = document.querySelector('#ics-calendar-link');
+  if (icsCalendarLink) icsCalendarLink.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar;charset=utf-8' }));
+}
 
 const form = document.querySelector('#rsvp-form');
 const message = document.querySelector('#rsvp-message');
