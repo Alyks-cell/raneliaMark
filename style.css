@@ -224,6 +224,9 @@ img.intro-envelope__seal{display:block;width:76px;height:76px;padding:0;border:0
 .attire-guide{display:block;overflow:hidden;border:1px solid #d8b58f;background:#fff;box-shadow:0 5px 16px rgba(70,50,35,.06);transition:transform .2s,box-shadow .2s}
 .attire-guide:hover{transform:translateY(-3px);box-shadow:0 9px 22px rgba(70,50,35,.12)}
 .attire-guide img{display:block;width:100%;height:auto!important;max-height:none;aspect-ratio:auto;object-fit:contain}
+.attire-guides-inner{max-width:860px;padding:24px}
+.attire-guide--single{width:min(100%,720px);margin:0 auto}
+.attire-guide--single img{width:100%;height:auto!important;aspect-ratio:auto;object-fit:contain}
 @media(max-width:650px){.save-date-section{padding:50px 21px 64px}.save-date-panel{grid-template-columns:1fr;gap:28px;padding:12px 14px 20px}.save-date-panel::before,.save-date-panel::after{width:74px;height:170px;opacity:.2}.save-date-panel::before{left:-20px}.save-date-panel::after{right:-20px}.save-date-copy{text-align:center}.save-date-note{margin-right:auto;margin-left:auto}.calendar-actions{justify-content:center}.calendar-action{min-height:42px}.attire-guides{padding:20px 16px 64px}.attire-guides-inner{padding:38px 20px}.attire-role-grid{grid-template-columns:1fr;margin:24px 0;gap:0;text-align:left}.attire-role{justify-content:flex-start;padding:12px 14px}.attire-role+.attire-role{border-top:1px solid #e1cdb7;border-left:0}.attire-guide-grid{grid-template-columns:1fr;gap:14px}.attire-guide img{aspect-ratio:3/2}}
 
 /* Framed watercolor portrait */
@@ -275,3 +278,4 @@ img.intro-envelope__seal{display:block;width:76px;height:76px;padding:0;border:0
   .count-unit small{font-size:6px}
   footer{padding-inline:16px}
 }
+@media(max-width:650px){.attire-guides-inner{padding:20px}}
