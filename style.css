@@ -230,6 +230,19 @@ img.intro-envelope__seal{display:block;width:76px;height:76px;padding:0;border:0
 .attire-guide--single img{width:100%;height:auto!important;aspect-ratio:auto;object-fit:contain}
 @media(max-width:650px){.save-date-section{padding:50px 21px 64px}.save-date-panel{grid-template-columns:1fr;gap:28px;padding:12px 14px 20px}.save-date-panel::before,.save-date-panel::after{width:74px;height:170px;opacity:.2}.save-date-panel::before{left:-20px}.save-date-panel::after{right:-20px}.save-date-copy{text-align:center}.save-date-note{margin-right:auto;margin-left:auto}.calendar-actions{justify-content:center}.calendar-action{min-height:42px}.attire-guides{padding:20px 16px 64px}.attire-guides-inner{padding:38px 20px}.attire-role-grid{grid-template-columns:1fr;margin:24px 0;gap:0;text-align:left}.attire-role{justify-content:flex-start;padding:12px 14px}.attire-role+.attire-role{border-top:1px solid #e1cdb7;border-left:0}.attire-guide-grid{grid-template-columns:1fr;gap:14px}.attire-guide img{aspect-ratio:3/2}}
 
+.gift-guide-section{max-width:940px;margin:-42px auto 0;padding:0 24px 72px}
+.gift-guide{border:1px solid #c6a77b;border-left:4px solid #b68c4b;background:linear-gradient(110deg,#fffaf3,#f3e8d8);box-shadow:0 10px 28px rgba(70,50,35,.1);text-align:left}
+.gift-guide-summary{display:flex;min-height:84px;align-items:center;justify-content:space-between;gap:20px;padding:18px 24px;cursor:pointer;list-style:none;transition:background .2s}
+.gift-guide-summary::-webkit-details-marker{display:none}
+.gift-guide-summary:hover{background:rgba(255,255,255,.5)}
+.gift-guide-summary h2{margin:0;color:#905344;font:400 clamp(25px,3vw,32px)/1.15 var(--serif)}
+.gift-guide-summary:focus-visible{outline:2px solid #b68c4b;outline-offset:3px}
+.gift-guide-chevron{flex:0 0 10px;width:10px;height:10px;margin:0 4px 0 8px;border-right:1px solid #765022;border-bottom:1px solid #765022;transform:rotate(-45deg);transition:transform .25s ease}
+.gift-guide[open] .gift-guide-summary{border-bottom:1px solid #dfcbb6}
+.gift-guide[open] .gift-guide-chevron{transform:rotate(45deg)}
+.gift-guide>p{margin:0;padding:20px 24px 24px;color:#493c34;font:400 16px/1.7 var(--serif)}
+@media(max-width:650px){.gift-guide-section{margin:-26px auto 0;padding:0 20px 56px}.gift-guide-summary{min-height:76px;padding:16px 20px}.gift-guide>p{padding:18px 20px 22px}}
+
 /* Framed watercolor portrait */
 .story.section-pad{max-width:none;padding:92px 24px 88px}
 .story-portrait{position:relative;width:min(100%,640px);margin:0 auto;padding:14px;border:1px solid #b68c4b;background:linear-gradient(135deg,#f8f1e6,#eee3d2);box-shadow:0 12px 34px rgba(77,57,34,.12)}
