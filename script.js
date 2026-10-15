@@ -30,6 +30,7 @@ if (intro && introOpen) {
     if (intro.classList.contains('is-opening')) return;
     intro.classList.add('is-opening');
     introOpen.disabled = true;
+    songAudio?.play().catch(() => setSongPlaying(false));
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       window.setTimeout(closeIntro, 1500);
       return;
